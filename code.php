@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>hier is jouw code!</h1>
+    <h2> Je code URL: </h2>
 <?php
   require 'connect.php';
 
@@ -19,6 +20,13 @@
     foreach ($stmt as $row) {
     $code = htmlspecialchars ($row['Code']);
   }
+  if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+        $url = "https://";
+        else
+        $url = "http://";
+        $url.= $_SERVER['HTTP_HOST'];
+        $url.= $_SERVER['REQUEST_URI'];
+echo $url
 ?>
   <pre>
     <code>
@@ -28,6 +36,6 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    
+
 </body>
 </html>
